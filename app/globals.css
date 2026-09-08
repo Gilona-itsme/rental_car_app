@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-main: #101828;
+  --color-gray: #8d929a;
+  --color-gray-light: #dadde1;
+  --color-badges: #f2f4f7;
+  --color-inputs: #f7f7f7;
+  --color-white: #ffffff;
+  --color-error: #ec383b;
+  --color-dark-blue: #0095ba;
+  --color-light-blue: #00aad4;
+  --color-background-main: #f5f5f5;
+  --color-error-light: #ffdfdf;
+
+  --radius-none: 0px;
+  --radius-3xs: 0px;
+  --radius-2xs: 5px;
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+}
+
+body {
+  background: var(--color-background-main);
+  color: var(--color-main);
+  font-family: var(--font-manrope);
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded px-6 py-3 text-base/5 font-medium text-white transition-colors duration-150 bg-light-blue hover:bg-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-sm border border-gray-light px-6 py-3 text-lg font-medium text-main transition-colors duration-150 bg-white hover:border-gray focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* Text inputs & textareas */
+  .field {
+    @apply w-full rounded-2xs bg-inputs px-4 py-3 text-lg text-main placeholder:text-gray outline-none transition-colors duration-150 focus:bg-white focus:ring-2 focus:ring-light-blue;
+  }
+
+  .field-error {
+    @apply w-full rounded-2xs bg-error-light px-4 py-3 text-lg text-main placeholder:text-gray outline-none ring-2 ring-error transition-colors duration-150 focus:ring-error;
+  }
+
+  .field-label {
+    @apply mb-1 block text-base text-gray;
+  }
+
+  .field-hint-error {
+    @apply mt-1 block text-base text-error;
+  }
+
+  /* Dropdown / select trigger */
+  .select-trigger {
+    @apply flex w-full cursor-pointer items-center justify-between rounded-2xs bg-white px-4 py-3 text-left text-lg text-main outline-none transition-colors duration-150 focus:ring-2 focus:ring-light-blue;
+  }
+
+  .select-panel {
+    @apply mt-1 max-h-48 w-full overflow-y-auto rounded-2xs bg-white p-2 shadow-lg ring-1 ring-gray-light;
+  }
+
+  .select-option {
+    @apply cursor-pointer rounded-2xs px-3 py-2 text-lg text-gray hover:bg-badges;
+  }
+
+  .select-option-active {
+    @apply cursor-pointer rounded-2xs px-3 py-2 text-lg font-semibold text-main hover:bg-badges;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center rounded-2xs bg-badges px-3 py-1 text-base text-gray;
+  }
+}
