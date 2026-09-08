@@ -9,10 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.102.2",
     "clsx": "^2.1.1",
+    "modern-normalize": "^3.0.1",
     "next": "16.3.4",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-paginate": "^8.3.0",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -21,7 +25,11 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
+    "prettier": "^3.9.5",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "optionalDependencies": {
+    "lightningcss-darwin-x64": "^1.33.0"
   }
 }
