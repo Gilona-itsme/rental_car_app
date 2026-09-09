@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 export default function Home() {
 	return (
@@ -12,7 +13,9 @@ export default function Home() {
 					</h2>
 				</div>
 				<button className="btn-primary mt-10 min-w-61">
+          <Link href='/catalog' >
 					View Catalog
+          </Link>
 				</button>
 			</div>
 		</section>

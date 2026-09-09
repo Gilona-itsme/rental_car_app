@@ -68,8 +68,8 @@ export default function CarsClient() {
     error instanceof Error ? error.message : "Failed to load cars";
 
   return (
-    <div className="mx-auto max-w-360 px-6 py-10">
-      <div className="flex flex-col w-fit gap-2 items-end">
+    <div className="mx-auto flex w-full max-w-300 flex-col items-center  pt-21 pb-26">
+      <div className="w-fit flex items-end flex-col gap-2 mb-15">
         <div className="w-fit flex flex-wrap items-end gap-4">
           <div className="min-w-51">
             <BrandDropdown
@@ -126,7 +126,7 @@ export default function CarsClient() {
       <CarList cars={cars} />
 
       {hasNextPage && (
-        <div className="mt-10 flex justify-center">
+        <div className="mt-12 flex justify-center">
           <button
             className="btn-outline"
             onClick={() => fetchNextPage()}
