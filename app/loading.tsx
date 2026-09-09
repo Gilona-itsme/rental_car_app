@@ -1,15 +1,13 @@
 export default function Loading() {
   return (
-    <main className="mx-auto max-w-300 px-4 py-10">
-      <div className="animate-pulse">
-        <div className="mb-8 h-12 w-72 rounded bg-slate-200" />
+    <div className="flex min-h-screen items-center justify-center bg-white">
+      <div className="flex flex-col items-center gap-4">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-light border-t-light-blue" />
 
-        <div className="mb-4 h-6 w-full rounded bg-slate-200" />
-        <div className="mb-4 h-6 w-4/5 rounded bg-slate-200" />
-        <div className="mb-10 h-6 w-3/5 rounded bg-slate-200" />
-
-        <div className="h-12 w-40 rounded bg-slate-200" />
+        <p className="text-lg font-medium text-main">
+          Loading...
+        </p>
       </div>
-    </main>
+    </div>
   );
 }

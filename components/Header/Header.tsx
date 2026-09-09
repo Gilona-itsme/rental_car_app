@@ -28,7 +28,7 @@ const Header =() => {
                 key={href}
                 href={href}
                 className={clsx(
-                  "text-base/5 font-medium transition-colors duration-150 ",
+                  "font-body transition-colors duration-150 ",
                   isActive
                     ? "text-light-blue underline"
                     : "text-main hover:text-light-blue"
