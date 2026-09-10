@@ -1,12 +1,12 @@
 import axios, { AxiosResponse } from "axios";
-import type { Car, CarsResponse, FetchCarsParams } from "@/types/car";
+import type { Car, CarsResponse, FetchCarsParams, CreateBookingPayload, CreateBookingResponse } from "@/types/car";
 
 const carsApi = axios.create({
   baseURL: 'https://car-rental-api.goit.study',
 });
 
 export const fetchCars= async (
-   params: FetchNotesParams,
+   params: FetchCarsParams,
 ): Promise<CarsResponse> => {
   const response: AxiosResponse<CarsResponse> = await carsApi.get(
     '/cars',
@@ -16,7 +16,7 @@ export const fetchCars= async (
 };
 
 export const fetchCarById = async (carId: string): Promise<Car> => {
-  const response: AxiosResponse<Car> = await noteApi.get(`/cars/${carId}`);
+  const response: AxiosResponse<Car> = await carsApi.get(`/cars/${carId}`);
   return response.data;
 };
 

@@ -11,9 +11,10 @@ const manrope = Manrope({
 	display: "swap",
 });
 
-const siteUrl = "https://rental_car_app-gilona.vercel.app/";
+const siteUrl = "https://rental-car-app-gilona.vercel.app";
 
 export const metadata: Metadata = {
+	metadataBase: new URL(siteUrl),
 	title: "RentalCar — find your perfect rental car",
 	description: "Reliable and budget-friendly car rentals for any journey.",
 	icons: {
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
 		siteName: "RentalCar",
 		images: [
 			{
-				url: `${siteUrl}/og-image.jpg`,
+				url: "/og-image.jpg",
 				width: 1200,
 				height: 630,
 			},
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "RentalCar — find your perfect rental car",
 		description: "Reliable and budget-friendly car rentals for any journey.",
-		images: [`${siteUrl}/og-image.jpg`],
+		images: ["/og-image.jpg"],
 	},
 };
 
@@ -54,11 +55,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className={manrope.variable}>
-			<body className='bg-white '>
-        <TanStackProvider>
-				<Header />
-				<main>{children}</main>
-        </TanStackProvider>
+			<body className='bg-white'>
+				<TanStackProvider>
+					<Header />
+					<main>{children}</main>
+				</TanStackProvider>
 			</body>
 		</html>
 	);

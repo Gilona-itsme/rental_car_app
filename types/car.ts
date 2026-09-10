@@ -14,13 +14,14 @@ export interface Car {
   description: string;
   fuelConsumption: number;
   engine: string;
+  features: string[];
   rentalPrice: string; 
   rentalCompany: string;
   rentalConditions: string[];
+  location: CarLocation;
   mileage: number;
   stockNumber: number;
   features: string[];
-  location: CarLocation;
   createdAt: string; 
   updatedAt: string; 
 }
