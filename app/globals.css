@@ -33,7 +33,7 @@ body {
 
   /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center justify-center cursor-pointer  rounded px-6 py-3 text-base/5 font-medium text-white transition-colors duration-150 bg-light-blue hover:bg-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center cursor-pointer rounded px-6 py-3 text-base/5 font-medium text-white transition-colors duration-150 bg-light-blue hover:bg-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-outline {
@@ -41,8 +41,30 @@ body {
   }
 
   /* Text inputs & textareas */
+
   .field {
-    @apply w-full rounded bg-inputs px-4 py-3 text-lg text-main placeholder:text-gray outline-none transition-colors duration-150 focus:bg-white focus:ring-2 focus:ring-light-blue;
+    @apply w-full rounded border border-transparent bg-inputs px-4 py-3 text-lg text-main placeholder:text-gray outline-none transition-colors duration-150  focus:ring-2 focus:ring-light-blue;
+  }
+
+  .field:-webkit-autofill,
+  .field:-webkit-autofill:hover,
+  .field:-webkit-autofill:focus,
+  .field:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-inputs) inset !important;
+    -webkit-text-fill-color: var(--color-main) !important;
+    caret-color: var(--color-main);
+  }
+
+  .field-error {
+    @apply w-full rounded bg-error-light px-4 py-3 text-base text-main placeholder:text-gray outline-none ring-2 ring-error transition-colors duration-150 focus:ring-error;
+  }
+
+  .field-label {
+    @apply mb-1 block text-gray;
+  }
+
+  .field-hint-error {
+    @apply mt-1 block text-base text-error;
   }
 
   .field-error {
@@ -50,7 +72,7 @@ body {
   }
 
   .field-label {
-    @apply mb-1 block  text-gray;
+    @apply mb-1 block text-gray;
   }
 
   .field-hint-error {
@@ -59,11 +81,11 @@ body {
 
   /* Dropdown / select trigger */
   .select-trigger {
-    @apply w-full  justify-between flex gap-8 cursor-pointer  rounded bg-white px-4 py-3   text-main outline-none transition-colors duration-150 focus:ring-0 focus:outline-none;
+    @apply w-full justify-between flex gap-8 cursor-pointer rounded bg-white px-4 py-3 text-main outline-none transition-colors duration-150 focus:ring-0 focus:outline-none;
   }
 
   .select-panel {
-    @apply w-full  mt-1 max-h-48 overflow-y-auto rounded bg-white p-2 shadow-lg ring-1 ring-gray-light;
+    @apply w-full mt-1 max-h-48 overflow-y-auto rounded bg-white p-2 shadow-lg ring-1 ring-gray-light;
   }
 
   .select-option {
@@ -71,7 +93,7 @@ body {
   }
 
   .select-option-active {
-    @apply cursor-pointer rounded-2xs px-3 py-2  text-main hover:bg-badges;
+    @apply cursor-pointer rounded-2xs px-3 py-2 text-main hover:bg-badges;
   }
 
   /* Badges */

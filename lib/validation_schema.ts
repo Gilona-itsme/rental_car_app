@@ -1,10 +1,11 @@
 import { z } from "zod";
 
 export const bookingSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Name must contain at least 2 characters")
-    .regex(/^[A-Za-zÀ-ÿ\s'-]+$/, "Name contains invalid characters"),
+ name: z
+  .string()
+    .trim()
+  .min(2, "Please enter your name.")
+  .regex(/^[\p{L}\s'-]+$/u, "Please enter your name."),
 
   email: z.email("Please enter a valid email address"),
 

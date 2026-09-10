@@ -118,7 +118,7 @@ export default function CarDetailsClient() {
 	}[];
 
 	return (
-		<div className='mx-auto grid max-w-300 grid-cols-1 gap-8  pt-41 pb-44 lg:grid-cols-[1fr_528px]'>
+		<div className='mx-auto grid max-w-300 grid-cols-1 gap-8  pt-21 pb-44 lg:grid-cols-[1fr_528px]'>
 			<div className=' flex flex-col gap-6'>
 				<div className='relative h-128 w-full overflow-hidden rounded-xl'>
 					<Image
@@ -141,43 +141,106 @@ export default function CarDetailsClient() {
 							className='flex flex-col gap-4'
 							onSubmit={handleSubmit(onSubmitForm)}>
 							<div>
-								<input
-									className={`field ${errors.name ? "border-error" : ""}`}
-									placeholder='Name*'
-									{...register("name")}
-								/>
+								<div className='relative'>
+									<input
+										id='name'
+										className={`peer field ${errors.name ? "field-error pr-10" : ""}`}
+										placeholder=' '
+										{...register("name")}
+									/>
+									<label
+										htmlFor='name'
+										className={`pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 px-1 text-base rounded-xs transition-all
+                                         peer-focus:top-0 peer-focus:text-sm 
+                                         peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm
+                                         ${errors.name ? "text-error bg-error-light rounded-2" : "bg-inputs peer-focus:bg-white"}
+                                       `}>
+										Name*
+									</label>
+									{errors.name && (
+										<Image
+											src='/icons/error.svg'
+											alt='error'
+											className='absolute right-4 top-1/2 w-5 h-5 -translate-y-1/2'
+											width={16}
+											height={16}
+										/>
+									)}
+								</div>
 								{errors.name && (
-									<p className='mt-1 text-sm text-error'>
+									<p className='mt-1 font-body-2 text-error'>
 										{errors.name.message}
 									</p>
 								)}
 							</div>
 
 							<div>
-								<input
-									className={`field ${errors.email ? "border-error" : ""}`}
-									placeholder='Email*'
-									{...register("email")}
-								/>
-
+								<div className='relative'>
+									<input
+										id='email'
+										className={`peer field ${errors.email ? "field-error pr-10" : ""}`}
+										placeholder=' '
+										{...register("email")}
+									/>
+									<label
+										htmlFor='email'
+										className={`pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 px-1 text-base rounded-xs  transition-all
+                                        peer-focus:top-0 peer-focus:text-sm 
+                                        peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm
+                                        ${errors.email ? "text-error bg-error-light" : "bg-inputs peer-focus:bg-white"}
+                                      `}>
+										Email*
+									</label>
+									{errors.email && (
+										<Image
+											src='/icons/error.svg'
+											alt='error'
+											className='absolute right-4 top-1/2 w-5 h-5 -translate-y-1/2'
+											width={16}
+											height={16}
+										/>
+									)}
+								</div>
 								{errors.email && (
-									<p className='mt-1 text-sm text-error'>
+									<p className='mt-1 font-body-2 text-error'>
 										{errors.email.message}
 									</p>
 								)}
 							</div>
-							<div>
-								<textarea
-									className={`field min-h-22 ${errors.comment ? "border-error" : ""}`}
-									placeholder='Comment'
-									{...register("comment")}
-								/>
 
-								{errors.comment && (
-									<p className='mt-1 text-sm text-error'>
-										{errors.comment.message}
-									</p>
-								)}
+							<div>
+								<div className='relative'>
+									<textarea
+										id='comment'
+										className={`peer field min-h-22 ${errors.comment ? "field-error pr-10" : ""}`}
+										placeholder=' '
+										resize='none'
+										{...register("comment")}
+									/>
+									<label
+										htmlFor='comment'
+										className={`pointer-events-none absolute left-3 top-6 -translate-y-1/2 px-1 text-base rounded-xs  transition-all
+                                      peer-focus:top-0 peer-focus:text-sm 
+                                      peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm
+                                      ${errors.comment ? "text-error bg-error-light" : "bg-inputs peer-focus:bg-white"}
+                                    `}>
+										Comment
+									</label>
+									{errors.comment && (
+										<Image
+											src='/icons/error.svg'
+											alt='error'
+											className='absolute right-4 top-6 w-5 h-5 -translate-y-1/2'
+											width={16}
+											height={16}
+										/>
+									)}
+									{errors.comment && (
+										<p className='mt-1 font-body-2 text-error'>
+											{errors.comment.message}
+										</p>
+									)}
+								</div>
 							</div>
 
 							{bookingMutation.isError && (
