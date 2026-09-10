@@ -1,10 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { useState, type FormEvent } from "react";
-import { fetchCarById } from "@/lib/api";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { fetchCarById, createBookingCar } from "@/lib/api";
+import { useBookingDraftStore } from "@/lib/store/bookingStore";
+import { bookingSchema, type BookingFormData } from "@/lib/validation_schema";
+import { useForm, useWatch } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const SPEC_ICONS: Record<string, string> = {
 	year: "/icons/calendar.svg",
@@ -17,6 +21,21 @@ const SPEC_ICONS: Record<string, string> = {
 
 export default function CarDetailsClient() {
 	const { id } = useParams<{ id: string }>();
+	const router = useRouter();
+	const queryClient = useQueryClient();
+	const { draft, setDraft, clearDraft } = useBookingDraftStore();
+	const [isHydrated, setIsHydrated] = useState(false);
+
+	const {
+		register,
+		handleSubmit,
+		control,
+		formState: { errors },
+	} = useForm<BookingFormData>({
+		resolver: zodResolver(bookingSchema),
+		defaultValues: draft,
+		mode: "onChange",
+	});
 
 	const {
 		data: car,
@@ -27,16 +46,35 @@ export default function CarDetailsClient() {
 		queryFn: () => fetchCarById(id),
 	});
 
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [comment, setComment] = useState("");
+	useEffect(() => {
+		if (useBookingDraftStore.persist.hasHydrated()) {
+			setIsHydrated(true);
+		}
+		const unsubscribe = useBookingDraftStore.persist.onFinishHydration(() => {
+			setIsHydrated(true);
+		});
+		return unsubscribe;
+	}, []);
 
-	const handleSubmit = (e: FormEvent) => {
-		e.preventDefault();
+	const bookingMutation = useMutation({
+		mutationFn: (data: BookingFormData) => createBookingCar(data, id),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["car", id] });
+			clearDraft();
+			router.back();
+		},
+	});
 
-		setName("");
-		setEmail("");
-		setComment("");
+	const values = useWatch({ control });
+
+	useEffect(() => {
+		if (!values) return;
+
+		setDraft(values);
+	}, [values, setDraft]);
+	const onSubmitForm = (data: BookingFormData) => {
+		setDraft(data);
+		bookingMutation.mutate(data);
 	};
 
 	if (isLoading) {
@@ -98,32 +136,70 @@ export default function CarDetailsClient() {
 						Stay connected! We are always ready to help you.
 					</p>
 
-					<form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-						<input
-							className='field'
-							placeholder='Name*'
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							required
-						/>
-						<input
-							className='field'
-							type='email'
-							placeholder='Email*'
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							required
-						/>
-						<textarea
-							className='field min-h-22'
-							placeholder='Comment'
-							value={comment}
-							onChange={(e) => setComment(e.target.value)}
-						/>
-						<button type='submit' className='btn-primary mt-6'>
-							Send
-						</button>
-					</form>
+					{isHydrated ? (
+						<form
+							className='flex flex-col gap-4'
+							onSubmit={handleSubmit(onSubmitForm)}>
+							<div>
+								<input
+									className={`field ${errors.name ? "border-error" : ""}`}
+									placeholder='Name*'
+									{...register("name")}
+								/>
+								{errors.name && (
+									<p className='mt-1 text-sm text-error'>
+										{errors.name.message}
+									</p>
+								)}
+							</div>
+
+							<div>
+								<input
+									className={`field ${errors.email ? "border-error" : ""}`}
+									placeholder='Email*'
+									{...register("email")}
+								/>
+
+								{errors.email && (
+									<p className='mt-1 text-sm text-error'>
+										{errors.email.message}
+									</p>
+								)}
+							</div>
+							<div>
+								<textarea
+									className={`field min-h-22 ${errors.comment ? "border-error" : ""}`}
+									placeholder='Comment'
+									{...register("comment")}
+								/>
+
+								{errors.comment && (
+									<p className='mt-1 text-sm text-error'>
+										{errors.comment.message}
+									</p>
+								)}
+							</div>
+
+							{bookingMutation.isError && (
+								<p className='text-sm text-error'>
+									Failed to send your request. Please try again.
+								</p>
+							)}
+
+							{bookingMutation.isSuccess && (
+								<p className='text-sm text-light-blue'>
+									Thanks! We&apos;ll be in touch shortly.
+								</p>
+							)}
+
+							<button
+								type='submit'
+								className='btn-primary mt-6'
+								disabled={bookingMutation.isPending}>
+								{bookingMutation.isPending ? "Sending..." : "Send"}
+							</button>
+						</form>
+					) : null}
 				</div>
 			</div>
 
@@ -134,7 +210,7 @@ export default function CarDetailsClient() {
 					</h1>
 					<span className='text-base text-gray'>Article: {car.id}</span>
 				</div>
-				<div className='flex gap-1 items-center mb-4' flex>
+				<div className='flex gap-1 items-center mb-4'>
 					<Image src='/icons/location.svg' alt='' width={16} height={16} />{" "}
 					<p className='  text-base text-main'>
 						{car.location?.city}, {car.location?.country}

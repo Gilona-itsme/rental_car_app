@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import type { Car, CarsResponse, FetchCarsParams, CreateBookingPayload, CreateBookingResponse } from "@/types/car";
+import type { Car, CarsResponse, FetchCarsParams, BookingDraft, CreateBookingResponse } from "@/types/car";
 
 const carsApi = axios.create({
   baseURL: 'https://car-rental-api.goit.study',
@@ -21,7 +21,7 @@ export const fetchCarById = async (carId: string): Promise<Car> => {
 };
 
 export const createBookingCar = async (
-  payload: CreateBookingPayload,
+  payload: BookingDraft,
   carId: string,
 ): Promise<CreateBookingResponse> => {
   const response: AxiosResponse<CreateBookingResponse> = await carsApi.post(

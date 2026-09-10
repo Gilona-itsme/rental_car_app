@@ -39,7 +39,7 @@ export default function CarItem({ car }: CarItemProps) {
 						{locationItems.map((item, i) => (
 							<span
 								key={i}
-								className='px-[6px] font-body-2 text-gray first:pl-0 '>
+								className='px-1.5 font-body-2 text-gray first:pl-0 '>
 								{item}
 							</span>
 						))}
@@ -48,7 +48,7 @@ export default function CarItem({ car }: CarItemProps) {
 						{specItems.map((item, i) => (
 							<span
 								key={i}
-								className='px-[6px] font-body-2 text-gray first:pl-0'>
+								className='px-1.5 font-body-2 text-gray first:pl-0'>
 								{item}
 							</span>
 						))}

@@ -51,7 +51,7 @@ export interface FetchCarsParams {
   maxMileage?: number;
 }
 
-export interface CreateBookingPayload {
+export interface BookingDraft {
   name: string;
   email: string;
   comment?: string;
