@@ -21,7 +21,6 @@ export interface Car {
   location: CarLocation;
   mileage: number;
   stockNumber: number;
-  features: string[];
   createdAt: string; 
   updatedAt: string; 
 }

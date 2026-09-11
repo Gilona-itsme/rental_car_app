@@ -5,9 +5,11 @@ const carsApi = axios.create({
   baseURL: 'https://car-rental-api.goit.study',
 });
 
+
 export const fetchCars= async (
    params: FetchCarsParams,
 ): Promise<CarsResponse> => {
+
   const response: AxiosResponse<CarsResponse> = await carsApi.get(
     '/cars',
      { params },

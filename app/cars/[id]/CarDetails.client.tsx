@@ -68,9 +68,11 @@ export default function CarDetailsClient() {
 	const values = useWatch({ control });
 
 	useEffect(() => {
-		if (!values) return;
-
-		setDraft(values);
+		setDraft({
+			name: values.name ?? "",
+			email: values.email ?? "",
+			comment: values.comment ?? "",
+		});
 	}, [values, setDraft]);
 	const onSubmitForm = (data: BookingFormData) => {
 		setDraft(data);
@@ -212,9 +214,9 @@ export default function CarDetailsClient() {
 								<div className='relative'>
 									<textarea
 										id='comment'
-										className={`peer field min-h-22 ${errors.comment ? "field-error pr-10" : ""}`}
+										className={`peer field min-h-22 resize-none ${errors.comment ? "field-error pr-10" : ""}`}
 										placeholder=' '
-										resize='none'
+
 										{...register("comment")}
 									/>
 									<label
