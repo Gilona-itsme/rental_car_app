@@ -10,9 +10,11 @@ export default function Home() {
 						Reliable and budget-friendly rentals for any journey
 					</h2>
 				</div>
-				<button className='btn-primary mt-10 min-w-61'>
-					<Link href='/catalog'>View Catalog</Link>
-				</button>
+				<Link
+					href='/catalog'
+					className='btn-primary mt-10 min-w-61 inline-flex justify-center'>
+					View Catalog
+				</Link>
 			</div>
 		</section>
 	);

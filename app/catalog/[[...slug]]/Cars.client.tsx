@@ -46,7 +46,7 @@ export default function CarsClient() {
 				page: pageParam,
 				perPage: PER_PAGE,
 				brand: applied.brand || undefined,
-				rentalPrice: applied.price || undefined,
+				price: applied.price || undefined,
 				minMileage: applied.mileageFrom
 					? Number(applied.mileageFrom)
 					: undefined,
@@ -66,12 +66,9 @@ export default function CarsClient() {
 		setApplied(EMPTY_FILTERS);
 	};
 
-	const errorMessage =
-		error instanceof Error ? error.message : "Failed to load cars";
-
 	return (
 		<div className='mx-auto flex w-full max-w-300 flex-col items-center  pt-21 pb-26'>
-			<div className='w-fit flex items-end flex-col gap-2 mb-15'>
+			<div className='w-fit flex items-end flex-col gap-2 '>
 				<div className='w-fit flex flex-wrap items-end gap-4'>
 					<div className='min-w-51'>
 						<BrandDropdown
@@ -110,24 +107,12 @@ export default function CarsClient() {
 				)}
 			</div>
 
-			{/* {isLoading && (
-        <p className="py-20 text-center text-lg text-gray">Loading cars...</p>
-      )} */}
-
-			{isError && (
-				<p className='py-20 text-center text-lg text-error'>{errorMessage}</p>
-			)}
-
-			{!isLoading && !isError && cars.length === 0 && (
-				<p className='py-20 text-center text-lg text-gray'>
-					No cars match your filters.
-				</p>
-			)}
-
 			<section className='relative'>
 				{isLoading && <CatalogLoading />}
-				{!isLoading && !isError && cars.length > 0 && <CarList cars={cars} />}
-				{!isLoading && !isError && cars.length === 0 && <CatalogNotFound />}
+				{cars.length > 0 && <CarList cars={cars} />}
+				{!isLoading && !isError && cars.length === 0 && (
+					<CatalogNotFound onReset={handleClearFilters} />
+				)}
 			</section>
 
 			{hasNextPage && (

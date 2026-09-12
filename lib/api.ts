@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import type { Car, CarsResponse, FetchCarsParams, BookingDraft, CreateBookingResponse } from "@/types/car";
+import type { Car, CarsResponse, FetchCarsParams, BookingDraft, CreateBookingResponse, CarFilters } from "@/types/car";
 
 const carsApi = axios.create({
   baseURL: 'https://car-rental-api.goit.study',
@@ -15,6 +15,12 @@ export const fetchCars= async (
      { params },
   );
   return response.data;
+};
+
+
+export const fetchFilters = async (): Promise<CarFilters> => {
+  const { data } = await carsApi.get("/cars/filters");
+  return data;
 };
 
 export const fetchCarById = async (carId: string): Promise<Car> => {

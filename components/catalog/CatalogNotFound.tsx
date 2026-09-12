@@ -1,10 +1,17 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
 
-export default function CatalogNotFound() {
+type CatalogNotFoundProps = {
+  onReset: () => void;
+};
+
+export default function CatalogNotFound({
+  onReset,
+}: CatalogNotFoundProps) {
   return (
-    <div className="flex flex-col items-center px-6 py-20 text-center">
-      <div className="relative h-56 w-56 sm:h-64 sm:w-64">
+    <div className="flex flex-col items-center  text-center mt-10">
+      <div className="relative h-97 min-w-103 ">
         <Image
           src="/illustrations/no-cars-found.jpg"
           alt=""
@@ -13,16 +20,20 @@ export default function CatalogNotFound() {
         />
       </div>
 
-      <h2 className="mt-8 text-2xl font-bold text-main">No cars found</h2>
+      <h2 className="mt-10 font-h2 text-main">No cars found</h2>
 
-      <p className="mt-3 max-w-md text-lg text-gray">
+      <p className="mt-4 max-w-87 font-body text-gray">
         We couldn`t find any cars that match your current filters. Try
         changing your search criteria or reset the filters.
       </p>
 
-      <Link href="/catalog" className="btn-outline-accent mt-8">
+       <button
+        type="button"
+        onClick={onReset}
+        className="btn-outline-accent mt-10"
+      >
         Reset filters
-      </Link>
+      </button>
     </div>
   );
 }
