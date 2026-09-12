@@ -1,8 +1,9 @@
 "use client";
 
 import { Listbox } from "@headlessui/react";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { VscChevronUpCompact, VscChevronDownCompact } from "react-icons/vsc";
 import { Fragment } from "react";
+import clsx from "clsx";
 
 type Option = {
 	label: string;
@@ -16,6 +17,7 @@ type SelectDropdownProps = {
 	value: string | number | "";
 	onChange: (value: string | number) => void;
 	formatSelected?: (option: Option) => string;
+	panelClassName?: string;
 };
 
 export default function SelectDropdown({
@@ -25,8 +27,10 @@ export default function SelectDropdown({
 	value,
 	onChange,
 	formatSelected,
+	panelClassName = "h-48",
 }: SelectDropdownProps) {
 	const selectedOption = options.find((o) => o.value === value);
+
 
 	return (
 		<div className='w-full'>
@@ -44,15 +48,21 @@ export default function SelectDropdown({
 										: selectedOption.label
 									: placeholder}
 							</span>
+
 							{open ? (
-								<ChevronUp size={16} className='text-main' />
+								<VscChevronUpCompact size={16} className='shrink-0 text-main' />
 							) : (
-								<ChevronDown size={16} className='text-main' />
+								<VscChevronDownCompact
+									size={16}
+									className='shrink-0 text-main'
+								/>
 							)}
 						</Listbox.Button>
 
 						<Listbox.Options as={Fragment}>
-							<div className='select-panel absolute z-20 '>
+							<ul 
+								className={clsx("select-panel absolute z-20", panelClassName)}
+								>
 								{options.map((option) => (
 									<Listbox.Option
 										key={option.value}
@@ -60,18 +70,17 @@ export default function SelectDropdown({
 										as={Fragment}>
 										{({ active, selected }) => (
 											<li
-												className={`${"font-body"} ${selected ? "select-option-active" : "select-option"}`}
-												style={
-													active
-														? { backgroundColor: "var(--color-badges)" }
-														: undefined
-												}>
+												className={clsx(
+													"font-body",
+													selected ? "select-option-active" : "select-option",
+													active && "bg-badges",
+												)}>
 												{option.label}
 											</li>
 										)}
 									</Listbox.Option>
 								))}
-							</div>
+							</ul>
 						</Listbox.Options>
 					</div>
 				)}

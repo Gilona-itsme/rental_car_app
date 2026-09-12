@@ -104,7 +104,7 @@ export default function BookingForm({ carId, onSuccess }: BookingFormProps) {
 
 			<button
 				type="submit"
-				className="btn-primary mt-6"
+				className="btn-primary mt-2"
 				disabled={bookingMutation.isPending}
 			>
 				{bookingMutation.isPending ? "Sending..." : "Send"}

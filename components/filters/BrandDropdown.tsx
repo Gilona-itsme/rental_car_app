@@ -18,13 +18,13 @@ export default function BrandDropdown({
     queryFn: fetchFilters,
   });
 
-  console.log(filters)
 
   return (
     <SelectDropdown
       label="Car brand"
       placeholder="Choose a brand"
       value={value}
+      panelClassName="h-[272px]"
       onChange={(value) => onChange(String(value))}
       options={
         filters?.brands?.map((brand) => ({
@@ -32,6 +32,7 @@ export default function BrandDropdown({
           value: brand,
         })) ?? []
       }
+       
     />
   );
 }

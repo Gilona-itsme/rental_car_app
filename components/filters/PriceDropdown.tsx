@@ -34,12 +34,14 @@ export default function PriceDropdown({
       label="Price / 1 hour"
       placeholder="Choose a price"
       value={value}
+      panelClassName="h-[188px]"
       onChange={(value) => onChange(Number(value))}
       options={prices.map((price) => ({
         label: String(price),
         value: price,
       }))}
       formatSelected={(option) => `To $${option.label}`}
+      
     />
   );
 }

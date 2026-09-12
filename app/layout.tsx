@@ -55,7 +55,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en' className={manrope.variable}>
-			<body className='bg-white'>
+			<body >
 				<TanStackProvider>
 					<Header />
 					<main>{children}</main>

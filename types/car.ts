@@ -45,7 +45,7 @@ export interface FetchCarsParams {
   page: number;
   perPage: number;
   brand?: string;
-  rentalPrice?: number;
+  price?: number;
   minMileage?: number;
   maxMileage?: number;
 }

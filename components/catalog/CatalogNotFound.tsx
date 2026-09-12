@@ -14,7 +14,8 @@ export default function CatalogNotFound({
       <div className="relative h-97 min-w-103 ">
         <Image
           src="/illustrations/no-cars-found.jpg"
-          alt=""
+          alt="no-cars-found"
+          priority
           fill
           className="object-contain mix-blend-multiply"
         />

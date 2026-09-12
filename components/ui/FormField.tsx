@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { UseFormRegisterReturn } from "react-hook-form";
+import clsx from "clsx";
 
 type FormFieldProps = {
 	id: string;
@@ -21,30 +22,33 @@ export default function FormField({
 
 	return (
 		<div>
-			<div className="relative">
+			<div className='relative'>
 				<Tag
 					id={id}
-					placeholder=" "
-					className={`peer field ${isTextarea ? "min-h-22 resize-none" : ""} ${
+					placeholder=' '
+					className={`peer field font-body ${isTextarea ? "min-h-22 resize-none" : ""} ${
 						error ? "field-error pr-10" : ""
 					}`}
 					{...registration}
 				/>
 				<label
 					htmlFor={id}
-					className={`pointer-events-none absolute left-3 ${
-						isTextarea ? "top-6" : "top-1/2"
-					} -translate-y-1/2 rounded-xs px-1 text-base transition-all
-            peer-focus:top-0 peer-focus:text-sm
-            peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-sm
-            ${error ? "bg-error-light text-error" : "bg-inputs peer-focus:bg-white"}`}
-				>
+					className={clsx(
+						"pointer-events-none absolute left-3 rounded-xs px-1 font-body transition-all",
+						isTextarea ? "top-6" : "top-1/2",
+						"-translate-y-1/2",
+						"peer-focus:top-0 peer-focus:font-body ",
+						"peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:font-body ",
+						error
+							? "bg-error-light text-error"
+							: "bg-inputs text-gray ",
+					)}>
 					{label}
 				</label>
 				{error && (
 					<Image
-						src="/icons/error.svg"
-						alt="error"
+						src='/icons/error.svg'
+						alt='error'
 						width={16}
 						height={16}
 						className={`absolute right-4 ${
@@ -53,7 +57,7 @@ export default function FormField({
 					/>
 				)}
 			</div>
-			{error && <p className="font-body-2  text-error">{error}</p>}
+			{error && <p className='font-body-2  text-error'>{error}</p>}
 		</div>
 	);
 }
