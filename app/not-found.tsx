@@ -34,7 +34,7 @@ export default function NotFound() {
           Page not found
         </h1>
 
-        <p className="mt-6 text-lg leading-8 text-gray">
+        <p className="mt-6 text-lg leading-8 ">
           Sorry, the page you are looking for doesn't exist or has been moved.
         </p>
 

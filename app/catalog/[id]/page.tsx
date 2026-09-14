@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title,
         description,
-        url: `https://rentalcar.com/cars/${id}`,
+        url: `https://rentalcar.com/catalog/${id}`,
         images: [
           {
             url: car.img,
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title: "Car not found | RentalCar",
         description: "The requested car could not be found",
-        url: `https://rentalcar.com/cars/${id}`,
+        url: `https://rentalcar.com/catalog/${id}`,
         images: [
           {
             url: "/og-image.jpg",

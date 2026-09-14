@@ -35,15 +35,13 @@ body {
 
   /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center justify-center cursor-pointer rounded px-6 py-3 text-base/5 font-medium text-white transition-colors duration-150 bg-light-blue hover:bg-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center cursor-pointer rounded px-6 py-3 text-base/5 font-semibold text-white transition-colors duration-150 bg-light-blue hover:bg-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-outline {
-    @apply inline-flex items-center cursor-pointer justify-center rounded-sm border border-light-blue px-6 py-3 text-lg font-medium text-main transition-colors duration-150 bg-white hover:border-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center cursor-pointer justify-center rounded-sm border border-light-blue px-6 py-3 text-base/5 font-semibold text-main transition-colors duration-150  hover:border-dark-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
   }
-   .btn-outline-accent {
-    @apply inline-flex items-center justify-center rounded-sm border cursor-pointer border-light-blue px-6 py-3 text-lg font-medium text-main transition-colors duration-150 bg-white hover:bg-light-blue/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-blue disabled:cursor-not-allowed disabled:opacity-50;
-  }
+  
 
   /* Text inputs & textareas */
 

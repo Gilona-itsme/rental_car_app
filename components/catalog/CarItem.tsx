@@ -54,7 +54,11 @@ export default function CarItem({ car }: CarItemProps) {
 					</div>
 				</div>
 			</div>
-			<Link href={`/cars/${car.id}`} className='btn-primary w-full  '>
+			<Link
+				href={`/catalog/${car.id}`}
+				target='_blank'
+				rel='noopener noreferrer'
+				className='btn-primary w-full  '>
 				Read more
 			</Link>
 		</div>

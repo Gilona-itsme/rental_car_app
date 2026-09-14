@@ -60,6 +60,9 @@ export default function CarsClient() {
 	const cars: Car[] = data?.pages.flatMap((page) => page.cars) ?? [];
 	const hasActiveFilters = Object.values(applied).some(Boolean);
 
+	console.log("isLoadingCatalog", isLoading)
+
+
 	const handleSearch = () => setApplied(draft);
 	const handleClearFilters = () => {
 		setDraft(EMPTY_FILTERS);
