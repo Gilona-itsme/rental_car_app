@@ -12,7 +12,7 @@ const manrope = Manrope({
 	display: "swap",
 });
 
-const siteUrl = "https://rental-car-app-gilona.vercel.app";
+const siteUrl = "https://rental-car-app-mu.vercel.app";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),
