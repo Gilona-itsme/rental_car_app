@@ -10,26 +10,14 @@ import MileageRangeInput from "@/components/filters/MileageRangeInput";
 import CarList from "@/components/catalog/CarList";
 import CatalogLoading from "@/components/catalog/CatalogLoading";
 import CatalogNotFound from "@/components/catalog/CatalogNotFound";
+import {PER_PAGE, EMPTY_FILTERS} from "@/lib/store/catalog";
+import { type CarFilters } from "@/types/car";
 
-const PER_PAGE = 12;
 
-type Filters = {
-	brand: string;
-	price: number | "";
-	mileageFrom: string;
-	mileageTo: string;
-};
-
-const EMPTY_FILTERS: Filters = {
-	brand: "",
-	price: "",
-	mileageFrom: "",
-	mileageTo: "",
-};
 
 export default function CarsClient() {
-	const [draft, setDraft] = useState<Filters>(EMPTY_FILTERS);
-	const [applied, setApplied] = useState<Filters>(EMPTY_FILTERS);
+	const [draft, setDraft] = useState<CarFilters>(EMPTY_FILTERS);
+	const [applied, setApplied] = useState<CarFilters>(EMPTY_FILTERS);
 
 	const {
 		data,

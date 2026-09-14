@@ -5,7 +5,6 @@ const carsApi = axios.create({
   baseURL: 'https://car-rental-api.goit.study',
 });
 
-
 export const fetchCars= async (
    params: FetchCarsParams,
 ): Promise<CarsResponse> => {

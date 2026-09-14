@@ -4,6 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { fetchCars } from "@/lib/api";
+import {PER_PAGE, EMPTY_FILTERS} from "@/lib/store/catalog";
 import CarsClient from "./Cars.client";
 import type { Metadata } from "next";
 
@@ -12,13 +13,11 @@ export const metadata: Metadata = {
   description: "Browse our full catalog of rental cars.",
 };
 
-const PER_PAGE = 12;
-
 export default async function CarsPage() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["cars", { perPage: PER_PAGE }],
+    queryKey: ["cars", { perPage: PER_PAGE, ...EMPTY_FILTERS }],
     queryFn: ({ pageParam = 1 }) =>
       fetchCars({ page: pageParam, perPage: PER_PAGE }),
     initialPageParam: 1,

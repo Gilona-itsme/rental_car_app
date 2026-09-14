@@ -25,6 +25,7 @@ export default function BrandDropdown({
       placeholder="Choose a brand"
       value={value}
       panelClassName="h-[272px]"
+      className="min-w-51"
       onChange={(value) => onChange(String(value))}
       options={
         filters?.brands?.map((brand) => ({

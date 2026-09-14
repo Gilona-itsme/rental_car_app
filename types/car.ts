@@ -33,12 +33,12 @@ export interface CarsResponse {
   perPage: number;
 }
 
+
 export interface CarFilters {
-  brands: string[];
-  price: {
-    min: number;
-    max: number;
-  };
+  brand: string;
+	price: number | "";
+	mileageFrom: string;
+	mileageTo: string;
 }
 
 export interface FetchCarsParams {

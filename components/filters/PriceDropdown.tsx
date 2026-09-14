@@ -35,6 +35,7 @@ export default function PriceDropdown({
       placeholder="Choose a price"
       value={value}
       panelClassName="h-[188px]"
+      className="min-w-49"
       onChange={(value) => onChange(Number(value))}
       options={prices.map((price) => ({
         label: String(price),

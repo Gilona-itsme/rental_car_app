@@ -2,12 +2,9 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchFilters } from "@/lib/api";
-import { type CarFilters } from "@/types/car";
 
-const EMPTY_FILTERS: CarFilters = {
-  brands: [],
-  price: { min: 0, max: 0 },
-};
+import {EMPTY_FILTERS} from "@/types/store/catalog"
+
 
 export function useCarFilters() {
   const query = useQuery({
