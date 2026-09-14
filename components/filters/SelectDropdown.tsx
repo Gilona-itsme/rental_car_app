@@ -18,7 +18,7 @@ type SelectDropdownProps = {
 	onChange: (value: string | number) => void;
 	formatSelected?: (option: Option) => string;
 	panelClassName?: string;
-	className?: string; 
+	className?: string;
 };
 
 export default function SelectDropdown({
@@ -43,7 +43,7 @@ export default function SelectDropdown({
 						<Listbox.Button
 							className={clsx(
 								"select-trigger w-full",
-								open && "ring-2 ring-light-blue"
+								open && "ring-2 ring-light-blue",
 							)}>
 							<span className='font-body truncate'>
 								{selectedOption
@@ -56,20 +56,27 @@ export default function SelectDropdown({
 							{open ? (
 								<VscChevronUpCompact size={16} className='shrink-0 text-main' />
 							) : (
-								<VscChevronDownCompact size={16} className='shrink-0 text-main' />
+								<VscChevronDownCompact
+									size={16}
+									className='shrink-0 text-main'
+								/>
 							)}
 						</Listbox.Button>
 
 						<Listbox.Options as={Fragment}>
-							<ul className={clsx("select-panel absolute z-20", panelClassName)}>
+							<ul
+								className={clsx("select-panel absolute z-20", panelClassName)}>
 								{options.map((option) => (
-									<Listbox.Option key={option.value} value={option.value} as={Fragment}>
+									<Listbox.Option
+										key={option.value}
+										value={option.value}
+										as={Fragment}>
 										{({ active, selected }) => (
 											<li
 												className={clsx(
 													"font-body",
 													selected ? "select-option-active" : "select-option",
-													active && "bg-badges"
+													active && "bg-badges",
 												)}>
 												{option.label}
 											</li>
