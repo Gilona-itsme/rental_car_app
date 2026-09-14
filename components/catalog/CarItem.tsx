@@ -22,7 +22,7 @@ export default function CarItem({ car }: CarItemProps) {
 					alt={`${car.brand} ${car.model}`}
 					priority
 					fill
-					sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
+					sizes='(max-width: 550px) 100vw, (max-width: 600px) 50vw, 25vw'
 					className='object-cover'
 				/>
 			</div>

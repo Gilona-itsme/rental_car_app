@@ -46,11 +46,15 @@ export default function BookingForm({ carId, onSuccess }: BookingFormProps) {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["car", carId] });
 			clearDraft();
-			toast.success("Booking request sent successfully!");
+			toast.success("Booking request sent successfully!", {position: "top-left", style: {
+				border: '1px solid #0095ba', padding: "16px", color: "#101828"
+			}});
 			onSuccess?.();
 		},
 		onError: () => {
-			toast.error("Failed to send your request. Please try again.");
+			toast.error("Failed to send your request. Please try again.", {position: "top-left", style: {
+				border: '1px solid #0095ba', padding: "16px", color: "#101828"
+			}});
 		},
 	});
 
