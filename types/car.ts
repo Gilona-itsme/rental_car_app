@@ -34,12 +34,6 @@ export interface CarsResponse {
 }
 
 
-export interface CarFilters {
-  brand: string;
-	price: number | "";
-	mileageFrom: string;
-	mileageTo: string;
-}
 
 export interface FetchCarsParams {
   page: number;
@@ -48,6 +42,13 @@ export interface FetchCarsParams {
   price?: number;
   minMileage?: number;
   maxMileage?: number;
+}
+export interface CarFilters {
+  brands: string[];
+  price: {
+    min: number;
+    max: number;
+  };
 }
 
 export interface BookingDraft {
