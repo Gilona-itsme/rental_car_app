@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import { createBookingCar } from "@/lib/api";
 import { useBookingDraftStore } from "@/lib/store/bookingStore";
 import { bookingSchema, type BookingFormData } from "@/lib/validation_schema";
-import  FormField  from "@/components/ui/FormField";
+import FormField from "@/components/ui/FormField";
 
 type BookingFormProps = {
 	carId: string;
@@ -45,7 +46,11 @@ export default function BookingForm({ carId, onSuccess }: BookingFormProps) {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["car", carId] });
 			clearDraft();
+			toast.success("Booking request sent successfully!");
 			onSuccess?.();
+		},
+		onError: () => {
+			toast.error("Failed to send your request. Please try again.");
 		},
 	});
 
@@ -89,18 +94,6 @@ export default function BookingForm({ carId, onSuccess }: BookingFormProps) {
 				error={errors.comment?.message}
 				registration={register("comment")}
 			/>
-
-			{bookingMutation.isError && (
-				<p className="text-sm text-error">
-					Failed to send your request. Please try again.
-				</p>
-			)}
-
-			{bookingMutation.isSuccess && (
-				<p className="text-sm text-light-blue">
-					Thanks! We`ll be in touch shortly.
-				</p>
-			)}
 
 			<button
 				type="submit"
