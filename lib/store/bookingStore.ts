@@ -9,7 +9,7 @@ type BookingDraftStore = {
   clearDraft: () => void;
 };
 
-const initialDraft: BookingDraft = {
+export const initialDraft: BookingDraft = {
   name: "",
   email: "",
   comment: "",

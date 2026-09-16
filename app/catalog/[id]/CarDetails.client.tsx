@@ -69,7 +69,7 @@ export default function CarDetailsClient() {
 	}[];
 
 	return (
-		<div className='mx-auto grid max-w-300 grid-cols-1 gap-8 pb-44 pt-21 lg:grid-cols-[1fr_528px]'>
+		<div className='mx-auto grid max-w-300 grid-cols-1 gap-8 pb-44 pt-21 px-6 lg:px-0 lg:grid-cols-[1fr_528px]'>
 			<div className='flex flex-col gap-8'>
 				<div className='relative h-128 w-full overflow-hidden rounded-xl'>
 					<Image

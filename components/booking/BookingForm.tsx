@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { createBookingCar } from "@/lib/api";
-import { useBookingDraftStore } from "@/lib/store/bookingStore";
-import { bookingSchema, type BookingFormData } from "@/lib/validation_schema";
+import { useBookingDraftStore, initialDraft } from "@/lib/store/bookingStore";
+import { bookingSchema, type BookingFormData} from "@/lib/validation_schema";
 import FormField from "@/components/ui/FormField";
 
 type BookingFormProps = {
@@ -24,22 +24,26 @@ export default function BookingForm({ carId, onSuccess }: BookingFormProps) {
 		register,
 		handleSubmit,
 		control,
+		reset,
 		formState: { errors },
 	} = useForm<BookingFormData>({
 		resolver: zodResolver(bookingSchema),
-		defaultValues: draft,
+		defaultValues: initialDraft,
 		mode: "onChange",
 	});
 
 	useEffect(() => {
+		const applyHydration = () => {
+			setIsHydrated(true);
+			reset(useBookingDraftStore.getState().draft); 
+		};
+
 		if (useBookingDraftStore.persist.hasHydrated()) {
-			setIsHydrated(true);
+			applyHydration();
 		}
-		const unsubscribe = useBookingDraftStore.persist.onFinishHydration(() => {
-			setIsHydrated(true);
-		});
+		const unsubscribe = useBookingDraftStore.persist.onFinishHydration(applyHydration);
 		return unsubscribe;
-	}, []);
+	}, [reset]);
 
 	const bookingMutation = useMutation({
 		mutationFn: (data: BookingFormData) => createBookingCar(data, carId),
@@ -73,7 +77,6 @@ export default function BookingForm({ carId, onSuccess }: BookingFormProps) {
 		bookingMutation.mutate(data);
 	};
 
-	if (!isHydrated) return null;
 
 	return (
 		<form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmitForm)}>

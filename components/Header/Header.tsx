@@ -15,7 +15,7 @@ const Header =() => {
 
   return (
     <header className="border-b border-badges bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-10 py-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10 py-6">
         <Link href="/" className="text-lg  text-main">
          <Image src="/logo.svg" alt="RentalCar logo" width="104" height="16"/>
         </Link>

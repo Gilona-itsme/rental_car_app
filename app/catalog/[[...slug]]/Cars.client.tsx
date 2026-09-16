@@ -69,45 +69,45 @@ export default function CarsClient() {
 	};
 
 	return (
-		<div className='mx-auto flex w-full max-w-300 flex-col items-center  pt-21 pb-26'>
-			<div className='w-fit flex items-end flex-col gap-2 '>
-				<div className='w-fit flex flex-wrap items-end gap-4'>
-					<div className='min-w-51'>
-						<BrandDropdown
-							value={draft.brand}
-							onChange={(brand) => setDraft((f) => ({ ...f, brand }))}
-						/>
-					</div>
+		<div className='mx-auto flex w-full max-w-300 flex-col items-center px-4  pt-21 pb-26'>
+			<div className='w-fit flex md:items-end items-center flex-col gap-2'>
+	<div className='w-full flex flex-wrap items-end gap-4'>
+		<div className='w-full sm:w-auto sm:min-w-51'>
+			<BrandDropdown
+				value={draft.brand}
+				onChange={(brand) => setDraft((f) => ({ ...f, brand }))}
+			/>
+		</div>
 
-					<div className='min-w-49'>
-						<PriceDropdown
-							value={draft.price}
-							onChange={(price) => setDraft((f) => ({ ...f, price }))}
-						/>
-					</div>
+		<div className='w-full sm:w-auto sm:min-w-49'>
+			<PriceDropdown
+				value={draft.price}
+				onChange={(price) => setDraft((f) => ({ ...f, price }))}
+			/>
+		</div>
 
-					<div className='w-80'>
-						<MileageRangeInput
-							from={draft.mileageFrom}
-							to={draft.mileageTo}
-							onFromChange={(v) => setDraft((f) => ({ ...f, mileageFrom: v }))}
-							onToChange={(v) => setDraft((f) => ({ ...f, mileageTo: v }))}
-						/>
-					</div>
+		<div className='w-full sm:w-80'>
+			<MileageRangeInput
+				from={draft.mileageFrom}
+				to={draft.mileageTo}
+				onFromChange={(v) => setDraft((f) => ({ ...f, mileageFrom: v }))}
+				onToChange={(v) => setDraft((f) => ({ ...f, mileageTo: v }))}
+			/>
+		</div>
 
-					<button className='btn-primary min-w-39' onClick={handleSearch}>
-						Search
-					</button>
-				</div>
+		<button className='btn-primary w-full sm:w-auto sm:min-w-39' onClick={handleSearch}>
+			Search
+		</button>
+	</div>
 
-				{hasActiveFilters && (
-					<button
-						className='font-body text-gray min-w-39 cursor-pointer hover:text-light-blue hover:underline'
-						onClick={handleClearFilters}>
-						Clear filters
-					</button>
-				)}
-			</div>
+	{hasActiveFilters && (
+		<button
+			className='font-body text-gray min-w-39 cursor-pointer hover:text-light-blue hover:underline'
+			onClick={handleClearFilters}>
+			Clear filters
+		</button>
+	)}
+</div>
 
 			<section className='relative'>
 				{isLoading && <CatalogLoading />}
