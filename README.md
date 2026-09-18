@@ -6,6 +6,24 @@
 
 A car rental catalog app — a test task built as part of the GoIT fullstack program. The app lets users browse a list of cars with filters, view car details, and fill out a booking form.
 
+## 🎨 UI/UX Design
+
+**Home page**
+
+![Home](./screenshots/home.png)
+
+**Catalog with filters**
+
+![Catalog](./screenshots/catalog.png)
+
+**Filtering example**
+
+![Catalog filtered](./screenshots/catalog-filtered.png)
+
+**Car details + booking form**
+
+![Car details](./screenshots/car-details.png)
+
 ## 🔗 Demo
 
 - Live: `https://rental-car-app-mu.vercel.app/`
@@ -100,6 +118,24 @@ Ilona — Frontend Developer / Web Designer
 [ua]: #🚗-rentalcar-ua
 
 Каталог автомобілів для оренди — тестове завдання, виконане в межах фултстек-курсу GoIT. Застосунок дозволяє переглядати список авто з фільтрами, деталями кожної машини та формою бронювання.
+
+## 🎨 UI/UX дизайн
+
+**Головна сторінка**
+
+![Home](./screenshots/home.png)
+
+**Каталог з фільтрами**
+
+![Catalog](./screenshots/catalog.png)
+
+**Приклад фільтрації**
+
+![Catalog filtered](./screenshots/catalog-filtered.png)
+
+**Сторінка авто + форма бронювання**
+
+![Car details](./screenshots/car-details.png)
 
 ## 🔗 Демо
 

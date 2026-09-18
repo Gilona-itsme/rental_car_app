@@ -37,20 +37,20 @@ export default function CarItem({ car }: CarItemProps) {
 					</div>
 
 					<div className='flex flex-col gap-1 rounded-xs bg-badges p-2'>
-						<div className='flex flex-wrap items-center divide-x divide-gray-light'>
+						<ul className='flex flex-wrap items-center divide-x divide-gray-light'>
 							{locationItems.map((item, i) => (
-								<span key={i} className='px-1.5 font-body-2  first:pl-0'>
+								<li key={i} className='px-1.5 font-body-2  first:pl-0'>
 									{item}
-								</span>
+								</li>
 							))}
-						</div>
-						<div className='flex flex-wrap items-center divide-x divide-gray-light'>
+						</ul>
+						<ul className='flex flex-wrap items-center divide-x divide-gray-light'>
 							{specItems.map((item, i) => (
-								<span key={i} className='px-1.5 font-body-2 first:pl-0'>
+								<li key={i} className='px-1.5 font-body-2 first:pl-0'>
 									{item}
-								</span>
+								</li>
 							))}
-						</div>
+						</ul>
 					</div>
 				</div>
 
